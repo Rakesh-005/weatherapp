@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script src="https://kit.fontawesome.com/d1a2ca9398.js" crossorigin="anonymous"></script>
+    <style>
+        body{
+            background-color: #44b09e;
+            background-image: linear-gradient(315deg, #44b09e 0%, #e0d2c7 74%);
+            color: #3e4a73;
+        }
+        #main{
+            width: 500px;
+            height: 600px;
+            border: 2px solid red;
+            background-color: #118ab2;
+            background-image: linear-gradient(319deg, #118ab2 0%, #06d6a0 37%, #ffd166 100%);
+            margin-top: 20px;
+            border-radius: 30px;
+        }
+        #search{
+            width: 450px;
+            height: 20px;
+            padding: 20px;
+            border-radius: 20px;
+            font-size: 20px;
+        }
+        #temperature{
+            font-size: 30px;
+            color: #3e4a73;
+        }
+        #temp{
+            font-size: 30px;
+        }
+        progress{
+            color: yellow;
+        }
+        #wind{
+            width: 150px;
+            height: 100px;
+            margin-top: 50px;
+            margin-left: -300px;
+        }
+        #wind2{
+            font-size: 30px;
+        }
+        #hum{
+            margin-top: -100px;
+            margin-left: 300px;
+        }
+        #hum2{
+            font-size: 30px;
+        }
+        .footer{
+            margin-top: 80px;
+            margin-top: 120px;
+        }
+        #submit{
+            padding: 10px;
+            background-color: rgb(75, 177, 143);
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div id="main">
+            <h1>Weather App</h1><br><br><br>
+            <input type="text" name="" id="search" placeholder="Enter City name"><br><br><br>
+            <button type="submit" id="submit" onclick="checkWeather()">Generate</button><br><br>
+            <label for="" id="temperature"><b>50°</b></label>
+            <label for=""><i class="fa-solid fa-temperature-low fa-2xl"></i></label><br><br>
+            <label for="" id="temp"><b>Temperature</b></label><br>
+            <div class="wind" id="wind">
+                <center>
+                    <label for="" id="wind2">20</label>
+                    <label for="" style="font-size: 20px;"><b>Km/h</b><i class="fa-solid fa-wind fa-2xl"></i></label>
+                    <label for=""><h2>Wind</h2></label>
+                </center>
+            </div>
+            <div class="hum" id="hum">
+                <center>
+                    <label for="" id="hum2">30</label>
+                    <label for="" style="font-size: 20px;"><b>%</b><i class="fa-solid fa-droplet fa-2xl"></i></label>
+                    <label for=""><h2>Humidity</h2></label>
+                </center>
+            </div>
+            <div class="footer">
+                <center>
+                    <p>Contact the Developer.</p>
+                  <a
+                    href="https://www.linkedin.com/in/rakesh-sarma-ponukupati-6b3512259/"
+                    class="linkedin"
+                    ><i class="fa-brands fa-linkedin fa-2xl"></i
+                  ></a>
+                  <a href="https://www.hackerrank.com/rakesh20050618" class="linkedin"
+                    ><i class="fa-brands fa-hackerrank fa-2xl"></i
+                  ></a>
+                  <a href="https://github.com/Rakesh-005" class="linkedin"
+                    ><i class="fa-brands fa-square-github fa-2xl"></i
+                  ></a>
+                  <a href="https://leetcode.com/rakesh20050618/" class="linkedin"
+                    ><i class="fa-solid fa-code fa-2xl"></i></a
+                  ><br /><br />
+                </center>
+              </div>
+        </div>
+    </center>
+    <script>
+        const apiKey = "2f1d0201ede5dfe546513285c03f8ce6";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+        async function checkWeather() {
+                const city = document.getElementById('search').value;
+                const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+                const data = await response.json();
+                console.log(data);
+                document.getElementById('temperature').innerHTML = Math.round(data.main.temp);
+                document.getElementById("hum2").innerHTML =  data.main.humidity;
+                document.getElementById("wind2").innerHTML =  data.wind.speed;
+            }
+    </script>
+</body>
+</html>
